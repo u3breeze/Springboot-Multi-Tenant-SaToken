@@ -1,19 +1,22 @@
 # Multi-Tenant-SaToken
-#### 介绍
-此项目 Multi-Tenant-SaToken 是基于[RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) 的升级版（SpringBoot，sa-token，mybatis-plus，Vue & Element），是一个简约、优雅、轻量级的多租户管理系统的脚手架。
 
-#### 升级和优化
-1. 重构权限认证模块，替换spring security，使用 [sa-token](https://sa-token.cc) 让鉴权更简单、优雅。
-2. Sa-Token整合jwt([Simple简单模式](https://sa-token.cc/doc.html#/plugin/jwt-extend)) 
-3. springboot升级到2.6.8。
-4. 升级mybatis为mybatis-plus。
-5. 升级swagger，使用knife4j增强文档生成。
-6. 优化超级管理员和租户管理员的权限处理，统一交给sa-token，无需要手动if判断。
-7. 升级依赖包版本。
+[简体中文](https://github.com/u3breeze/Springboot-Multi-Tenant-SaToken/blob/main/README_zh.md)
 
-#### 环境和部署
-环境和部署可查看[RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) ，方式一样。
+#### Introduction
+Multi-Tenant-SaToken is an upgraded version of [RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) 的升级版（SpringBoot，sa-token，mybatis-plus，Vue & Element），It is a simple, elegant, and lightweight scaffold for a multi-tenant management system.
 
-#### 感谢
-1. [sa-token](https://sa-token.cc) 轻量级 java 权限认证框架
-2. [RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) 基于RuoYi-Vue扩展的多租户框架
+#### Upgrades and optimizations
+1. Refactored the authentication module for permissions, replacing Spring Security with [sa-token](https://sa-token.cc) to simplify and streamline authentication.
+2. Integrated jwt with Sa-Token([Simple mode](https://sa-token.cc/doc.html#/plugin/jwt-extend)) 
+3. Upgraded Spring Boot to 2.6.8.
+4. Upgraded MyBatis to MyBatis-Plus.
+5. Upgraded Swagger and used Knife4j to enhance document generation.
+6. Optimized the handling of permissions for super administrators and tenant administrators, uniformly managed by sa-token without the need for manual if statements.
+7. Upgraded dependency package versions.
+
+#### Environment and deployment
+The environment and deployment can be viewed in[RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) ，and the process is the same.
+
+#### Acknowledgements
+1. [sa-token](https://sa-token.cc) Lightweight Java authentication framework for permissions.
+2. [RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) Multi-tenant framework based on RuoYi-Vue.
