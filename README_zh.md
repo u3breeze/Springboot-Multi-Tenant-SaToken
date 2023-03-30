@@ -4,7 +4,8 @@
 
 #### 介绍
 此项目 Multi-Tenant-SaToken 是基于[RuoYi-Vue-Multi-Tenant](https://gitee.com/leslie8195/ruo-yi-vue-multi-tenant) 的升级版（SpringBoot，sa-token，mybatis-plus，Vue & Element），是一个简约、优雅、轻量级的多租户系统的脚手架。
-[github](https://github.com/u3breeze/Springboot-Multi-Tenant-SaToken)
+
+[github地址](https://github.com/u3breeze/Springboot-Multi-Tenant-SaToken)
 
 #### 升级和优化
 1. 重构权限认证模块，替换spring security，使用 [sa-token](https://sa-token.cc) 让鉴权更简单、优雅。
