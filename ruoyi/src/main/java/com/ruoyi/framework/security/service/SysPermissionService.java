@@ -64,7 +64,7 @@ public class SysPermissionService
         {
             perms.add("*:*:*");
         }
-        if (SecurityUtils.isComAdmin(user))
+        else if (SecurityUtils.isComAdmin(user))
         {
             perms.addAll(menuService.selectMenuPermsByTempId(user.getCom().getTempId()));
         }
