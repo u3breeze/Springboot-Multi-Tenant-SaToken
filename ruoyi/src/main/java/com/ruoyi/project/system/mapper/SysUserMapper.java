@@ -90,10 +90,11 @@ public interface SysUserMapper
     /**
      * 校验用户名称是否唯一
      * 
-     * @param userName 用户名称
+     * @param comId 公司id
+     * @param userName 用户名
      * @return 结果
      */
-    public int checkUserNameUnique(String userName);
+    public int checkUserNameUnique(String comId, String userName);
 
     /**
      * 校验手机号码是否唯一

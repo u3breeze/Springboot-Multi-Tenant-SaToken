@@ -118,9 +118,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="selectUserVo"/>
 		where u.user_id = #{userId}
 	</select>
-	
+
 	<select id="checkUserNameUnique" parameterType="String" resultType="int">
-		select count(1) from sys_user where user_name = #{userName}
+		select count(1) from sys_user
+		<where>
+			<if test="comId != null and comId != ''">
+				and com_id = #{comId}
+			</if>
+			<if test="userName != null and userName != ''">
+				and user_name = #{userName}
+			</if>
+			and del_flag = 0
+		</where>
 	</select>
 	
 	<select id="checkPhoneUnique" parameterType="String" resultMap="SysUserResult">

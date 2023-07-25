@@ -128,12 +128,12 @@ public class SysUserServiceImpl implements ISysUserService {
   /**
    * 校验用户名称是否唯一
    *
-   * @param userName 用户名称
+   * @param user 用户信息
    * @return 结果
    */
   @Override
-  public String checkUserNameUnique(String userName) {
-    int count = userMapper.checkUserNameUnique(userName);
+  public String checkUserNameUnique(SysUser user) {
+    int count = userMapper.checkUserNameUnique(user.getComId(), user.getUserName());
     if (count > 0) {
       return UserConstants.NOT_UNIQUE;
     }

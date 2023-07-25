@@ -127,7 +127,7 @@ public class SysCompanyServiceImpl implements ISysCompanyService
      * @param user
      */
     private void checkUser(SysUser user) {
-        if (UserConstants.NOT_UNIQUE.equals(userService.checkUserNameUnique(user.getUserName())))
+        if (UserConstants.NOT_UNIQUE.equals(userService.checkUserNameUnique(user)))
         {
             throw new CustomException("新增用户'" + user.getUserName() + "'失败，该登录账号已存在");
         }
