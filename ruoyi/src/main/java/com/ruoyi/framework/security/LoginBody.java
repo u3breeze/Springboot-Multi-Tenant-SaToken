@@ -7,6 +7,7 @@ package com.ruoyi.framework.security;
  */
 public class LoginBody
 {
+    private String comcode;
     /**
      * 用户名
      */
@@ -79,5 +80,13 @@ public class LoginBody
 
     public void setDevice(String device) {
         this.device = device;
+    }
+
+    public String getComcode() {
+        return comcode;
+    }
+
+    public void setComcode(String comcode) {
+        this.comcode = comcode;
     }
 }

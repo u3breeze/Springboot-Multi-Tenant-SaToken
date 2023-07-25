@@ -72,8 +72,8 @@ public class SysUserServiceImpl implements ISysUserService {
    * @return 用户对象信息
    */
   @Override
-  public SysUser selectUserByUserName(String userName) {
-    return userMapper.selectUserByUserName(userName);
+  public SysUser selectUserByUserName(String comId, String userName) {
+    return userMapper.selectUserByUserName(comId, userName);
   }
 
   /**
@@ -406,7 +406,7 @@ public class SysUserServiceImpl implements ISysUserService {
     for (SysUser user : userList) {
       try {
         // 验证是否存在这个用户
-        SysUser u = userMapper.selectUserByUserName(user.getUserName());
+        SysUser u = userMapper.selectUserByUserName(user.getComId(), user.getUserName());
         if (StringUtils.isNull(u)) {
           user.setPassword(SecurityUtils.encryptPassword(password));
           user.setCreateBy(operName);

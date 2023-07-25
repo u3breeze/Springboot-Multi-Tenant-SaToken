@@ -2,6 +2,11 @@
   <div class="login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
       <h3 class="title">Multi-tenant</h3>
+      <el-form-item prop="comcode">
+        <el-input v-model="loginForm.comcode" type="text" auto-complete="off" placeholder="租户Code">
+          <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
+        </el-input>
+      </el-form-item>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -65,6 +70,7 @@ export default {
       codeUrl: "",
       cookiePassword: "",
       loginForm: {
+        comcode:"",
         username: "",
         password: "",
         rememberMe: false,
@@ -72,6 +78,9 @@ export default {
         uuid: ""
       },
       loginRules: {
+        comcode: [
+          { required: true, trigger: "blur", message: "组合不能为空" }
+        ],
         username: [
           { required: true, trigger: "blur", message: "用户名不能为空" }
         ],
@@ -104,10 +113,12 @@ export default {
       });
     },
     getCookie() {
+      const comcode = Cookies.get("comcode");
       const username = Cookies.get("username");
       const password = Cookies.get("password");
       const rememberMe = Cookies.get('rememberMe')
       this.loginForm = {
+        comcode: comcode === undefined ? this.loginForm.comcode : comcode,
         username: username === undefined ? this.loginForm.username : username,
         password: password === undefined ? this.loginForm.password : decrypt(password),
         rememberMe: rememberMe === undefined ? false : Boolean(rememberMe)
@@ -118,10 +129,12 @@ export default {
         if (valid) {
           this.loading = true;
           if (this.loginForm.rememberMe) {
+            Cookies.set("comcode", this.loginForm.comcode, { expires: 30 });
             Cookies.set("username", this.loginForm.username, { expires: 30 });
             Cookies.set("password", encrypt(this.loginForm.password), { expires: 30 });
             Cookies.set('rememberMe', this.loginForm.rememberMe, { expires: 30 });
           } else {
+            Cookies.remove("comcode");
             Cookies.remove("username");
             Cookies.remove("password");
             Cookies.remove('rememberMe');

@@ -21,13 +21,14 @@ public interface SysUserMapper
      */
     public List<SysUser> selectUserList(SysUser sysUser);
 
+
     /**
      * 通过用户名查询用户
-     * 
+     *
      * @param userName 用户名
      * @return 用户对象信息
      */
-    public SysUser selectUserByUserName(String userName);
+    public SysUser selectUserByUserName(String comId, String userName);
 
     /**
      * 通过用户ID查询用户

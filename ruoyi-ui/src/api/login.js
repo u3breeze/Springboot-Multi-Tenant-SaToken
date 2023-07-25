@@ -1,8 +1,9 @@
 import request from '@/utils/request'
 
 // 登录方法
-export function login(username, password, code, uuid) {
+export function login(comcode, username, password, code, uuid) {
   const data = {
+    comcode,
     username,
     password,
     code,

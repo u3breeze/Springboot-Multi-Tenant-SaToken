@@ -1,5 +1,7 @@
 package com.ruoyi.framework.security.service;
 
+import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.ruoyi.common.constant.Constants;
 import com.ruoyi.common.enums.UserStatus;
 import com.ruoyi.common.exception.BaseException;
@@ -15,7 +17,9 @@ import com.ruoyi.framework.manager.factory.AsyncFactory;
 import com.ruoyi.framework.redis.RedisCache;
 import com.ruoyi.framework.security.LoginBody;
 import com.ruoyi.framework.security.LoginUser;
+import com.ruoyi.project.system.domain.SysCompany;
 import com.ruoyi.project.system.domain.SysUser;
+import com.ruoyi.project.system.service.ISysCompanyService;
 import com.ruoyi.project.system.service.ISysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +45,8 @@ public class SysAuthService
     private ISysUserService userService;
 
     @Autowired
-    private SysPermissionService permissionService;
+    private ISysCompanyService companyService;
+
 
     /**
      * 登录验证
@@ -49,6 +54,7 @@ public class SysAuthService
      */
     public String login(LoginBody loginBody)
     {
+        String comcode = loginBody.getComcode();
         String username = loginBody.getUsername();
         String password = loginBody.getPassword();
         String code = loginBody.getCode();
@@ -69,7 +75,7 @@ public class SysAuthService
         LoginUser loginUser;
         try
         {
-            loginUser = loadUserByUsername(username, password);
+            loginUser = loadUserByUsername(comcode, username, password);
         }
         catch (UserPasswordNotMatchException e)
         {
@@ -87,9 +93,15 @@ public class SysAuthService
         return tokenService.createToken(loginUser);
     }
 
-    private LoginUser loadUserByUsername(String username, String password) throws UserPasswordNotMatchException
+    private LoginUser loadUserByUsername(String comcode, String username, String password) throws UserPasswordNotMatchException
     {
-        SysUser user = userService.selectUserByUserName(username);
+        SysCompany sysCompany = companyService.selectSysCompanyByCode(comcode);
+        if (ObjectUtil.isNull(sysCompany) || CharSequenceUtil.isBlank(sysCompany.getId()))
+        {
+            log.info("租户Code：{} 不存在.", comcode);
+            throw new UserPasswordNotMatchException();
+        }
+        SysUser user = userService.selectUserByUserName(sysCompany.getId(), username);
         if (StringUtils.isNull(user)
                 || !SecurityUtils.matchesPassword(password, user.getPassword()))
         {

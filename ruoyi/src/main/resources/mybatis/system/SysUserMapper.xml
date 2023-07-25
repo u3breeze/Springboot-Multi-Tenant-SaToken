@@ -112,6 +112,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectUserByUserName" parameterType="String" resultMap="SysUserResult">
 	    <include refid="selectUserVo"/>
 		where u.user_name = #{userName}
+		<if test="comId != null and comId != ''">
+			AND u.com_id = #{comId}
+		</if>
 	</select>
 	
 	<select id="selectUserById" parameterType="Long" resultMap="SysUserResult">

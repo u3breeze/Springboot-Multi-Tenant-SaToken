@@ -19,6 +19,15 @@ public interface ISysCompanyService
      */
     public SysCompany selectSysCompanyById(String id);
 
+
+    /**
+     * 查询公司信息
+     *
+     * @param comCode 公司code
+     * @return 公司信息
+     */
+    SysCompany selectSysCompanyByCode(String comCode);
+
     /**
      * 查询公司信息列表
      * 
