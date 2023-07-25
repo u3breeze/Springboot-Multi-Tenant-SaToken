@@ -94,8 +94,8 @@ public class SysUserServiceImpl implements ISysUserService {
    * @return 结果
    */
   @Override
-  public String selectUserRoleGroup(String userName) {
-    List<SysRole> list = roleMapper.selectRolesByUserName(userName);
+  public String selectUserRoleGroup(String userName, String comId) {
+    List<SysRole> list = roleMapper.selectRolesByUserName(userName, comId);
     StringBuffer idsStr = new StringBuffer();
     for (SysRole role : list) {
       idsStr.append(role.getRoleName()).append(",");
@@ -113,8 +113,8 @@ public class SysUserServiceImpl implements ISysUserService {
    * @return 结果
    */
   @Override
-  public String selectUserPostGroup(String userName) {
-    List<SysPost> list = postMapper.selectPostsByUserName(userName);
+  public String selectUserPostGroup(String userName, String comId) {
+    List<SysPost> list = postMapper.selectPostsByUserName(userName, comId);
     StringBuffer idsStr = new StringBuffer();
     for (SysPost post : list) {
       idsStr.append(post.getPostName()).append(",");

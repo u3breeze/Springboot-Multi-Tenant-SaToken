@@ -55,15 +55,15 @@ public interface SysRoleMapper
      * @param userName 用户名
      * @return 角色列表
      */
-    public List<SysRole> selectRolesByUserName(String userName);
+    public List<SysRole> selectRolesByUserName(String userName, String comId);
 
     /**
      * 校验角色名称是否唯一
      * 
-     * @param roleName 角色名称
+     * @param role 角色信息
      * @return 角色信息
      */
-    public SysRole checkRoleNameUnique(String roleName);
+    public SysRole checkRoleNameUnique(SysRole role);
 
     /**
      * 校验角色权限是否唯一

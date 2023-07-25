@@ -3,6 +3,7 @@ package com.ruoyi.project.system.controller;
 import java.util.List;
 
 import cn.dev33.satoken.annotation.SaCheckPermission;
+import cn.hutool.core.text.CharSequenceUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -74,6 +75,7 @@ public class SelfcomRoleController extends BaseController
     @PostMapping
     public AjaxResult add(@Validated @RequestBody SysRole role)
     {
+        role.setComId(SecurityUtils.getCurrComId());
         if (UserConstants.NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role)))
         {
             return AjaxResult.error("新增角色'" + role.getRoleName() + "'失败，角色名称已存在");
@@ -83,7 +85,6 @@ public class SelfcomRoleController extends BaseController
             return AjaxResult.error("新增角色'" + role.getRoleName() + "'失败，角色权限已存在");
         }
         role.setCreateBy(SecurityUtils.getUsername());
-        role.setComId(SecurityUtils.getCurrComId());
         return toAjax(roleService.insertRole(role));
 
     }
@@ -96,7 +97,9 @@ public class SelfcomRoleController extends BaseController
     @PutMapping
     public AjaxResult edit(@Validated @RequestBody SysRole role)
     {
-        roleService.checkRoleAllowed(role);
+        if (CharSequenceUtil.isBlank(role.getComId())) {
+            role.setComId(SecurityUtils.getCurrComId());
+        }
         if (UserConstants.NOT_UNIQUE.equals(roleService.checkRoleNameUnique(role)))
         {
             return AjaxResult.error("修改角色'" + role.getRoleName() + "'失败，角色名称已存在");

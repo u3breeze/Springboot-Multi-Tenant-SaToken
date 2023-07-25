@@ -50,7 +50,7 @@ public interface SysPostMapper
      * @param userName 用户名
      * @return 结果
      */
-    public List<SysPost> selectPostsByUserName(String userName);
+    public List<SysPost> selectPostsByUserName(String userName, String comId);
 
     /**
      * 删除岗位信息

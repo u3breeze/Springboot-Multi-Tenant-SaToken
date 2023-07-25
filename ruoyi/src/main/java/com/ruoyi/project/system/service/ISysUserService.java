@@ -40,7 +40,7 @@ public interface ISysUserService
      * @param userName 用户名
      * @return 结果
      */
-    public String selectUserRoleGroup(String userName);
+    public String selectUserRoleGroup(String userName, String comId);
 
     /**
      * 根据用户ID查询用户所属岗位组
@@ -48,7 +48,7 @@ public interface ISysUserService
      * @param userName 用户名
      * @return 结果
      */
-    public String selectUserPostGroup(String userName);
+    public String selectUserPostGroup(String userName, String comId);
 
     /**
      * 校验用户名称是否唯一

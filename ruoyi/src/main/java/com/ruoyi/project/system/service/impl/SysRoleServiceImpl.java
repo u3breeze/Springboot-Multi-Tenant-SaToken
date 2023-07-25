@@ -116,7 +116,7 @@ public class SysRoleServiceImpl implements ISysRoleService {
     @Override
     public String checkRoleNameUnique(SysRole role) {
         Long roleId = StringUtils.isNull(role.getRoleId()) ? -1L : role.getRoleId();
-        SysRole info = roleMapper.checkRoleNameUnique(role.getRoleName());
+        SysRole info = roleMapper.checkRoleNameUnique(role);
         if (StringUtils.isNotNull(info) && info.getRoleId().longValue() != roleId.longValue()) {
             return UserConstants.NOT_UNIQUE;
         }
