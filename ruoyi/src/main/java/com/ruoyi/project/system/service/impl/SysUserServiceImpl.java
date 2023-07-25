@@ -184,7 +184,7 @@ public class SysUserServiceImpl implements ISysUserService {
     SysUser loginUser = SecurityUtils.getSysUser();
     // 如果登录用户是平台超级管理员，则允许随意操作
     if (SecurityUtils.isSuperAdmin(loginUser)) {
-      if (user.isStop()) {
+      if (SecurityUtils.isSuperAdmin(userDB) && user.isStop()) {
         throw new CustomException("不能停用平台超级管理员账号");
       }
       return;
@@ -195,18 +195,13 @@ public class SysUserServiceImpl implements ISysUserService {
       if (SecurityUtils.isComAdmin(userDB) && user.isStop()) {
         throw new CustomException("不能停用管理员账号");
       }
-      // 只能操作自己公司的数据
-      if (loginUser.getComId().equals(userDB.getComId())) {
-        return;
-      }
     }
-    // 登录用户是普通用户，只能操作自己的数据
-    if (!SecurityUtils.isComAdmin(loginUser) && !SecurityUtils.isSuperAdmin(loginUser)) {
-      if (loginUser.getUserId().equals(user.getUserId())) {
-        return;
-      }
+    // 只能操作自己公司的数据
+    if (!loginUser.getComId().equals(userDB.getComId())) {
+      throw new CustomException("无权操作");
     }
-    throw new CustomException("无权操作");
+
+    //其他情况通过注解的方式进行权限控制
   }
 
   /**
