@@ -16,8 +16,6 @@ Multi-Tenant-SaToken is an upgraded version of [RuoYi-Vue-Multi-Tenant](https://
 8. User accounts are isolated by tenants, and different tenants can use the same account.
 
 #### Environment and deployment
-The environment and deployment can be viewed in[RuoYi-Vue-Multi-Tenant](https://gitee.com/leslie8195/ruo-yi-vue-multi-tenant) ，and the process is the same.
-
 ##### admin ui(/ruoyi-ui)
 Local launch:
    ```
