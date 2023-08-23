@@ -18,6 +18,62 @@ Multi-Tenant-SaToken is an upgraded version of [RuoYi-Vue-Multi-Tenant](https://
 #### Environment and deployment
 The environment and deployment can be viewed in[RuoYi-Vue-Multi-Tenant](https://gitee.com/leslie8195/ruo-yi-vue-multi-tenant) ，and the process is the same.
 
+##### admin ui(/ruoyi-ui)
+Local launch:
+   ```
+   yarn install
+   yarn dev
+   ```
+
+Build:
+   ```
+    测试环境：yarn build:stage
+    生产环境：yarn build:prod
+   ```
+##### API Server (/ruoyi)
+mysql:
+   ```
+   create database：mtt
+   sql file：/ruoyi/sql/multi_tenant.sql
+   ```
+Redis：
+   ```
+   dev properties：application-dev.properties
+   # redis config:
+   spring.redis.host=127.0.0.1
+   spring.redis.port=6379
+   spring.redis.database=11
+   spring.redis.password=
+   ```
+Sa-Token Redis：
+   ```
+   dev properties：application-dev.properties
+   # Sa-Token插件：配置Sa-Token单独使用的Redis database连接，权限缓存与业务缓存分离。
+   # Redis数据库索引
+   sa-token.alone-redis.database=10
+   # Redis服务器地址
+   sa-token.alone-redis.host: 127.0.0.1
+   # Redis服务器连接端口
+   sa-token.alone-redis.port: 6379
+   # Redis服务器连接密码（默认为空）
+   sa-token.alone-redis.password:
+   ``` 
+### Instructions
+
+After the front and back ends are started, access the address: http://localhost:1024/
+
+Log in to the background of the tenant management system as the admin and admin123 system administrator (tenant Code is not specified) to manage menus and tenants.
+
+Login System Admin
+![img.png](./screenshot/img.png)
+Add Menu Template
+![img.png](./screenshot/menu.jpg)
+Add Tenant
+![img.png](./screenshot/comimg.png)
+
+Login Tenant, http://localhost:1024/
+![img.png](./screenshot/tenant.png)
+
 #### Acknowledgements
 1. [sa-token](https://sa-token.cc) Lightweight Java authentication framework for permissions.
 2. [RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) Multi-tenant framework based on RuoYi-Vue.
