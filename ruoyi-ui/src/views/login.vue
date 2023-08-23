@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
       <h3 class="title">Multi-tenant</h3>
       <el-form-item prop="comcode">
-        <el-input v-model="loginForm.comcode" type="text" auto-complete="off" placeholder="租户Code">
+        <el-input v-model="loginForm.comcode" type="text" auto-complete="off" placeholder="租户Code，如登录租户管理后台不需要填写">
           <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
@@ -78,9 +78,9 @@ export default {
         uuid: ""
       },
       loginRules: {
-        comcode: [
-          { required: true, trigger: "blur", message: "组合不能为空" }
-        ],
+        // comcode: [
+        //   { required: true, trigger: "blur", message: "组合不能为空" }
+        // ],
         username: [
           { required: true, trigger: "blur", message: "用户名不能为空" }
         ],

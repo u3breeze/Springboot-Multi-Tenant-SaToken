@@ -35,8 +35,9 @@ const user = {
       const password = userInfo.password
       const code = userInfo.code
       const uuid = userInfo.uuid
+      const comcode = userInfo.comcode
       return new Promise((resolve, reject) => {
-        login(username, password, code, uuid).then(res => {
+        login(comcode, username, password, code, uuid).then(res => {
           setToken(res.token)
           commit('SET_TOKEN', res.token)
           resolve()
@@ -66,7 +67,7 @@ const user = {
         })
       })
     },
-    
+
     // 退出系统
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {

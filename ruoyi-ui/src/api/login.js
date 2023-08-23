@@ -3,11 +3,11 @@ import request from '@/utils/request'
 // 登录方法
 export function login(comcode, username, password, code, uuid) {
   const data = {
-    comcode,
-    username,
-    password,
-    code,
-    uuid
+    comcode: comcode,
+    username: username,
+    password: password,
+    code: code,
+    uuid: uuid,
   }
   return request({
     url: '/login',

@@ -95,13 +95,16 @@ public class SysAuthService
 
     private LoginUser loadUserByUsername(String comcode, String username, String password) throws UserPasswordNotMatchException
     {
-        SysCompany sysCompany = companyService.selectSysCompanyByCode(comcode);
-        if (ObjectUtil.isNull(sysCompany) || CharSequenceUtil.isBlank(sysCompany.getId()))
-        {
-            log.info("租户Code：{} 不存在.", comcode);
-            throw new UserPasswordNotMatchException();
+        String comId = "";
+        if (CharSequenceUtil.isNotBlank(comcode)) {
+            SysCompany sysCompany = companyService.selectSysCompanyByCode(comcode);
+            if (ObjectUtil.isNull(sysCompany) || CharSequenceUtil.isBlank(sysCompany.getId())) {
+                log.info("租户Code：{} 不存在.", comcode);
+                throw new UserPasswordNotMatchException();
+            }
+            comId = sysCompany.getId();
         }
-        SysUser user = userService.selectUserByUserName(sysCompany.getId(), username);
+        SysUser user = userService.selectUserByUserName(comId, username);
         if (StringUtils.isNull(user)
                 || !SecurityUtils.matchesPassword(password, user.getPassword()))
         {
