@@ -19,7 +19,6 @@
 
 
 ### 环境和部署
-环境和部署可查看[RuoYi-Vue-Multi-Tenant](https://gitee.com/leslie8195/ruo-yi-vue-multi-tenant) ，方式一样。
 ##### 前端(/ruoyi-ui)
    
    本地启动：
