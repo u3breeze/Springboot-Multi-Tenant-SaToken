@@ -66,10 +66,12 @@ Sa-Token Redis配置：
 
 使用系统管理员账号：admin/admin123， 登录租户管理系统后台（租户Code不填写），管理菜单和租户。
 
-登录系统管理
+登录系统管理后台
 ![img.png](./screenshot/img.png)
+
 添加菜单模版
 ![img.png](./screenshot/menu.jpg)
+
 添加租户
 ![img.png](./screenshot/comimg.png)
 
