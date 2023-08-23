@@ -53,13 +53,14 @@ public interface SysRoleMapper
      * 根据用户ID查询角色
      * 
      * @param userName 用户名
+     * @param comId 公司id
      * @return 角色列表
      */
     public List<SysRole> selectRolesByUserName(String userName, String comId);
 
     /**
      * 校验角色名称是否唯一
-     * 
+     *
      * @param role 角色信息
      * @return 角色信息
      */

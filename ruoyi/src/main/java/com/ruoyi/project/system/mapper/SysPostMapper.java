@@ -48,6 +48,7 @@ public interface SysPostMapper
      * 查询用户所属岗位组
      * 
      * @param userName 用户名
+     * @param comId 公司id
      * @return 结果
      */
     public List<SysPost> selectPostsByUserName(String userName, String comId);

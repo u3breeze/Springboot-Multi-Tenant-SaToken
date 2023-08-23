@@ -123,8 +123,6 @@ public class SelfcomUserController extends BaseController {
   @Log(title = "用户管理", businessType = BusinessType.INSERT)
   @PostMapping
   public AjaxResult add(@Validated @RequestBody SysUser user) {
-    // 手机号也就是账号
-//    user.setPhonenumber(user.getUserName());
     user.setComId(SecurityUtils.getCurrComId());
     if (UserConstants.NOT_UNIQUE.equals(userService.checkUserNameUnique(user))) {
       return AjaxResult.error("新增用户'" + user.getUserName() + "'失败，该登录账号已存在");

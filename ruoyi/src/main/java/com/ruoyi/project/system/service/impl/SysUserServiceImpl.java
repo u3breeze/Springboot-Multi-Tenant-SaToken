@@ -251,10 +251,10 @@ public class SysUserServiceImpl implements ISysUserService {
    */
   @Override
   public int updateUserStatus(SysUser user) {
-      SysUser sysUser = userMapper.selectUserById(user.getUserId());
-      if (SecurityUtils.isSuperAdmin(sysUser) || SecurityUtils.isComAdmin(sysUser)) {
-          throw new CustomException("不能禁用管理员账号");
-      }
+    SysUser sysUser = userMapper.selectUserById(user.getUserId());
+    if (SecurityUtils.isSuperAdmin(sysUser) || SecurityUtils.isComAdmin(sysUser)) {
+        throw new CustomException("不能禁用管理员账号");
+    }
 
     return userMapper.updateUser(user);
   }
