@@ -15,6 +15,7 @@ Multi-Tenant-SaToken is an upgraded version of [RuoYi-Vue-Multi-Tenant](https://
 5. Upgraded Swagger and used Knife4j to enhance document generation.
 6. Optimized the handling of permissions for super administrators and tenant administrators, uniformly managed by sa-token without the need for manual if statements.
 7. Upgraded dependency package versions.
+8. User accounts are isolated by tenants, and different tenants can use the same account.
 
 #### Environment and deployment
 The environment and deployment can be viewed in[RuoYi-Vue-Multi-Tenant](https://gitee.com/leslie8195/ruo-yi-vue-multi-tenant) ，and the process is the same.

@@ -15,6 +15,7 @@
 5. 升级swagger，使用knife4j增强文档生成。
 6. 优化超级管理员和租户管理员的权限处理，统一交给sa-token，无需要手动if判断。
 7. 升级依赖包版本。
+8. 用户账号通过租户隔离，不同租户可以使用相同的账号。
 
 #### 环境和部署
 环境和部署可查看[RuoYi-Vue-Multi-Tenant](https://gitee.com/leslie8195/ruo-yi-vue-multi-tenant) ，方式一样。
