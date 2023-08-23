@@ -1,11 +1,9 @@
 # Multi-Tenant-SaToken
 
-[English](https://gitee.com/willf/springboot-multi-tenant-sa-token/blob/master/README.md)
+[English](https://github.com/u3breeze/Springboot-Multi-Tenant-SaToken/blob/main/README.md)
 
 #### 介绍
-此项目 Multi-Tenant-SaToken 是基于[RuoYi-Vue-Multi-Tenant](https://gitee.com/leslie8195/ruo-yi-vue-multi-tenant) 的升级版（SpringBoot，sa-token，mybatis-plus，Vue & Element），是一个简约、优雅、轻量级的多租户系统的脚手架。
-
-[github地址](https://github.com/u3breeze/Springboot-Multi-Tenant-SaToken)
+此项目 Multi-Tenant-SaToken 是基于[RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) 的升级版（SpringBoot，sa-token，mybatis-plus，Vue & Element），是一个简约、优雅、轻量级的多租户系统的脚手架。
 
 #### 升级和优化
 1. 重构权限认证模块，替换spring security，使用 [sa-token](https://sa-token.cc) 让鉴权更简单、优雅。
@@ -22,4 +20,4 @@
 
 #### 感谢
 1. [sa-token](https://sa-token.cc) 轻量级 java 权限认证框架
-2. [RuoYi-Vue-Multi-Tenant](https://gitee.com/leslie8195/ruo-yi-vue-multi-tenant) 基于RuoYi-Vue扩展的多租户框架
+2. [RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) 基于RuoYi-Vue扩展的多租户框架
