@@ -44,6 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="companyName" column="company_name"   />
 		<result property="comCode" column="com_code"   />
 		<result property="activeFlag" column="active_flag"   />
+		<result property="activeTime" column="active_time"   />
 		<result property="tempId" column="temp_id"   />
 	</resultMap>
 	
@@ -60,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select u.user_id, u.dept_id, u.user_name, u.nick_name, u.email, u.avatar, u.phonenumber, u.password,
         u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark, u.com_id,u.admin_flag,u.super_admin_flag,
         d.dept_id, d.parent_id, d.dept_name, d.leader, d.status as dept_status,
-		c.id as com_id, c.company_name, c.com_code, c.active_flag, c.temp_id,
+		c.id as com_id, c.company_name, c.com_code, c.active_flag, c.temp_id,c.active_time,
         r.role_id, r.role_name, r.role_key, r.role_sort, r.data_scope, r.status as role_status
         from sys_user u
 		    left join sys_dept d on u.dept_id = d.dept_id
@@ -73,7 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select u.user_id, u.com_id, u.dept_id, u.nick_name, u.user_name, u.email, u.avatar, u.phonenumber,
 		u.password, u.sex, u.status, u.del_flag, u.login_ip, u.login_date, u.create_by, u.create_time, u.remark, u.admin_flag, u.super_admin_flag,
 		d.dept_id, d.parent_id, d.dept_name, d.leader, d.status as dept_status,
-		c.id as com_id, c.company_name, c.com_code, c.active_flag, c.temp_id
+		c.id as com_id, c.company_name, c.com_code, c.active_flag, c.temp_id, c.active_time
 		from sys_user u
 		left join sys_dept d on u.dept_id = d.dept_id
 		left join sys_company c on u.com_id = c.id

@@ -33,19 +33,19 @@ public class SaTokenConfigure implements WebMvcConfigurer {
         return new StpLogicJwtForSimple();
     }
 
-    /**
-     * 重写 Sa-Token 框架内部算法策略
-     */
-    @Autowired
-    public void setSaJwtTemplate() {
-        SaJwtUtil.setSaJwtTemplate(new SaJwtTemplate() {
-            @Override
-            public String generateToken(JWT jwt, String key) {
-                System.out.println("------ 这里可以自定义 token 生成-----------");
-                return super.generateToken(jwt, key);
-            }
-        });
-    }
+//    /**
+//     * 重写 Sa-Token 框架内部算法策略
+//     */
+//    @Autowired
+//    public void setSaJwtTemplate() {
+//        SaJwtUtil.setSaJwtTemplate(new SaJwtTemplate() {
+//            @Override
+//            public String generateToken(JWT jwt, String key) {
+//                System.out.println("------ 这里可以自定义 token 生成-----------");
+//                return super.generateToken(jwt, key);
+//            }
+//        });
+//    }
 
     /**
      * 注册拦截器

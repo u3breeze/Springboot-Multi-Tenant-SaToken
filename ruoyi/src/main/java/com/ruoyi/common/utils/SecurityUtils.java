@@ -1,5 +1,6 @@
 package com.ruoyi.common.utils;
 
+import cn.dev33.satoken.session.SaSession;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.crypto.digest.BCrypt;
 import cn.hutool.json.JSONObject;
@@ -15,7 +16,6 @@ import com.ruoyi.framework.security.LoginUser;
  */
 public class SecurityUtils {
 
-    public static final String AUTH_EXTRA_KEY_LOGIN_USER = "auth_extra_loginuser";
 
     /**
      * 获取用户账户
@@ -38,6 +38,16 @@ public class SecurityUtils {
             throw new CustomException("获取用户公司信息异常", HttpStatus.UNAUTHORIZED);
         }
     }
+    /**
+     * 获取用户对应公司ID
+     **/
+    public static Integer getCurrComCode() {
+        try {
+            return getLoginUser().getUser().getCom().getComCode();
+        } catch (Exception e) {
+            throw new CustomException("获取用户公司信息异常", HttpStatus.UNAUTHORIZED);
+        }
+    }
 
 
     /**
@@ -56,11 +66,34 @@ public class SecurityUtils {
      **/
     public static LoginUser getLoginUser() {
         try {
-            return ((JSONObject) StpUtil.getExtra(AUTH_EXTRA_KEY_LOGIN_USER)).toBean(LoginUser.class);
+            return (LoginUser)StpUtil.getTokenSession().get(SaSession.USER);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new CustomException("获取用户信息异常", HttpStatus.UNAUTHORIZED);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T getLoginExtra(String key) {
+        Object value = StpUtil.getExtra(key);
+        if (value == null) {
+            return null;
+        }
+        return (T) value;
+    }
+
+    /**
+     * 保存登录用户信息到sa-token session中
+     **/
+    public static void setLoginUser(LoginUser loginUser) {
+        StpUtil.getTokenSession().set(SaSession.USER, loginUser);
+    }
+
+    /**
+     * 登出用户
+     */
+    public static void logoutUser() {
+        StpUtil.getTokenSession().logout();
+        StpUtil.logout();
     }
 
     /**
@@ -68,9 +101,8 @@ public class SecurityUtils {
      **/
     public static LoginUser getLoginUser(String tokenValue) {
         try {
-            return ((JSONObject) StpUtil.getExtra(tokenValue, AUTH_EXTRA_KEY_LOGIN_USER)).toBean(LoginUser.class);
+            return (LoginUser)StpUtil.getTokenSessionByToken(tokenValue).get(SaSession.USER);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new CustomException("获取用户信息异常", HttpStatus.UNAUTHORIZED);
         }
     }
@@ -151,5 +183,4 @@ public class SecurityUtils {
             throw new CustomException("获取用户昵称异常", HttpStatus.UNAUTHORIZED);
         }
     }
-
 }
