@@ -1,14 +1,18 @@
 package com.ruoyi.common.utils;
 
 import com.ruoyi.common.core.lang.UUID;
+import com.ruoyi.common.utils.idworker.SnowflakeIdUtils;
 
 /**
  * ID生成器工具类
  * 
  * @author ruoyi
  */
-public class IdUtils
-{
+public class IdUtils {
+
+    private IdUtils() {
+
+    }
     /**
      * 获取随机UUID
      * 
@@ -47,5 +51,13 @@ public class IdUtils
     public static String fastSimpleUUID()
     {
         return UUID.fastUUID().toString(true);
+    }
+
+    /**
+     * 雪花算法生成id
+     * @return String
+     */
+    public static Long snowflakeId() {
+        return SnowflakeIdUtils.generateId();
     }
 }

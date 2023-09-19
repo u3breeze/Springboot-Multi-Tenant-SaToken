@@ -395,7 +395,7 @@ public class SysUserServiceImpl implements ISysUserService {
    */
   @Override
   public String importUser(List<SysUser> userList, Boolean isUpdateSupport, String operName) {
-    if (StringUtils.isNull(userList) || userList.size() == 0) {
+    if (StringUtils.isNull(userList) || userList.isEmpty()) {
       throw new CustomException("导入用户数据不能为空！");
     }
     int successNum = 0;

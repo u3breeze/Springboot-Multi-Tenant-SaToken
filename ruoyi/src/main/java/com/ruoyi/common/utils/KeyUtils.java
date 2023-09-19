@@ -7,14 +7,12 @@ public class KeyUtils {
 
 
     /**
-     * 主键生成，系统可以容忍少量冲突，所以暂时先这样，做个简易版的
+     * 主键生成，雪花ID
      *
-     * @return
+     * @return String
      */
     public static synchronized String genUniqueKey() {
-        Random random = new Random();
-        Integer number = random.nextInt(900000) + 100000;
-        return System.currentTimeMillis() + String.valueOf(number);
+        return IdUtils.snowflakeId().toString();
     }
 
 
