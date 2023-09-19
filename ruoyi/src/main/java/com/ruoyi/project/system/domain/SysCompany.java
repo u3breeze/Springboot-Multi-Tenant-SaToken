@@ -1,8 +1,12 @@
 package com.ruoyi.project.system.domain;
 
 import java.util.Date;
+
+import cn.hutool.core.text.CharSequenceUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.framework.aspectj.lang.annotation.Excel;
@@ -14,6 +18,7 @@ import com.ruoyi.framework.web.domain.BaseEntity;
  * @author ruoyi
  * @date 2020-07-11
  */
+@Slf4j
 @Data
 public class SysCompany extends BaseEntity
 {
@@ -66,4 +71,14 @@ public class SysCompany extends BaseEntity
      */
     private String regionCodes;
 
+
+    /**
+     * 通过activeFlag和activeTime判断租户有效性
+     */
+    public boolean isActive() {
+        if (CharSequenceUtil.isBlank(id)) { //系统管理员没有公司（租户）ID
+            return true;
+        }
+        return activeFlag != null && activeFlag == 1 &&  (activeTime == null || activeTime.after(new Date()));
+    }
 }

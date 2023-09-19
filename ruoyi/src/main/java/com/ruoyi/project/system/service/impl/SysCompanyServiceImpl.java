@@ -70,7 +70,11 @@ public class SysCompanyServiceImpl implements ISysCompanyService
     @Override
     public SysCompany selectSysCompanyByCode(String comCode)
     {
-        return sysCompanyMapper.getByCode(comCode);
+        SysCompany sysCompany = sysCompanyMapper.getByCode(comCode);
+        if (sysCompany != null && !sysCompany.isActive()) {
+            throw new CustomException("账户已失效");
+        }
+        return sysCompany;
     }
 
     /**

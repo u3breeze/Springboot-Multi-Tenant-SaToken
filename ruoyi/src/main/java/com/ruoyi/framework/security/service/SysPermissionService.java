@@ -1,5 +1,6 @@
 package com.ruoyi.framework.security.service;
 
+import com.ruoyi.common.exception.CustomException;
 import com.ruoyi.common.utils.SecurityUtils;
 import com.ruoyi.project.system.domain.SysUser;
 import com.ruoyi.project.system.service.ISysMenuService;
@@ -32,6 +33,10 @@ public class SysPermissionService
      */
     public Set<String> getRolePermission(SysUser user)
     {
+        if (!user.getCom().isActive()) {
+            throw new CustomException("账户已失效");
+        }
+
         Set<String> roles = new HashSet<>();
         // 系统管理员拥有所有权限
         if (SecurityUtils.isSuperAdmin(user))
@@ -58,6 +63,10 @@ public class SysPermissionService
      */
     public Set<String> getMenuPermission(SysUser user)
     {
+        if (!user.getCom().isActive()) {
+            throw new CustomException("账户已失效");
+        }
+
         Set<String> perms = new HashSet<>();
         // 管理员拥有所有权限
         if (SecurityUtils.isSuperAdmin(user))
