@@ -14,6 +14,7 @@ Multi-Tenant-SaToken is an upgraded version of [RuoYi-Vue-Multi-Tenant](https://
 6. Optimized the handling of permissions for super administrators and tenant administrators, uniformly managed by sa-token without the need for manual if statements.
 7. Upgraded dependency package versions.
 8. User accounts are isolated by tenants, and different tenants can use the same account.
+9. Support from the external access to the token (such as their own sso server to create the token)
 
 #### Environment and deployment
 ##### admin ui(/ruoyi-ui)
