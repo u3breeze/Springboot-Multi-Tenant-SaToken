@@ -1,9 +1,7 @@
 import { login, logout, getInfo } from '@/api/login'
-import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
   state: {
-    token: getToken(),
     name: '',
     avatar: '',
     roles: [],
@@ -11,9 +9,6 @@ const user = {
   },
 
   mutations: {
-    SET_TOKEN: (state, token) => {
-      state.token = token
-    },
     SET_NAME: (state, name) => {
       state.name = name
     },
@@ -38,8 +33,6 @@ const user = {
       const comcode = userInfo.comcode
       return new Promise((resolve, reject) => {
         login(comcode, username, password, code, uuid).then(res => {
-          setToken(res.token)
-          commit('SET_TOKEN', res.token)
           resolve()
         }).catch(error => {
           reject(error)
@@ -48,9 +41,9 @@ const user = {
     },
 
     // 获取用户信息
-    GetInfo({ commit, state }) {
+    GetInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(res => {
+        getInfo().then(res => {
           const user = res.user
           const avatar = user.avatar == "" ? require("@/assets/image/profile.jpg") : process.env.VUE_APP_BASE_API + user.avatar;
           if (res.roles && res.roles.length > 0) { // 验证返回的roles是否是一个非空数组
@@ -69,13 +62,11 @@ const user = {
     },
 
     // 退出系统
-    LogOut({ commit, state }) {
+    LogOut({ commit }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
-          commit('SET_TOKEN', '')
+        logout().then(() => {
           commit('SET_ROLES', [])
           commit('SET_PERMISSIONS', [])
-          removeToken()
           resolve()
         }).catch(error => {
           reject(error)
@@ -86,8 +77,6 @@ const user = {
     // 前端 登出
     FedLogOut({ commit }) {
       return new Promise(resolve => {
-        commit('SET_TOKEN', '')
-        removeToken()
         resolve()
       })
     }
