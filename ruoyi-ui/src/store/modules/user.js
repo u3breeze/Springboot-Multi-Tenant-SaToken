@@ -1,4 +1,5 @@
 import { login, logout, getInfo } from '@/api/login'
+import {removeToken} from "@/utils/auth";
 
 const user = {
   state: {
@@ -67,6 +68,7 @@ const user = {
         logout().then(() => {
           commit('SET_ROLES', [])
           commit('SET_PERMISSIONS', [])
+          removeToken() // 这里其实不需要remove，后端sa-token登出时已做了remove处理。
           resolve()
         }).catch(error => {
           reject(error)
@@ -77,6 +79,7 @@ const user = {
     // 前端 登出
     FedLogOut({ commit }) {
       return new Promise(resolve => {
+        removeToken()
         resolve()
       })
     }
