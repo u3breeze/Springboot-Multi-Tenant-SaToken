@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/login'
-import {removeToken} from "@/utils/auth";
+import {removeToken, setToken} from "@/utils/auth";
 
 const user = {
   state: {
@@ -34,6 +34,7 @@ const user = {
       const comcode = userInfo.comcode
       return new Promise((resolve, reject) => {
         login(comcode, username, password, code, uuid).then(res => {
+          setToken(res.token)
           resolve()
         }).catch(error => {
           reject(error)
