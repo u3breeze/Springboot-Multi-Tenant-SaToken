@@ -136,7 +136,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="updateRoleStatus" parameterType="SysRole">
- 		update sys_user set status = #{status} where user_id = #{userId}
+		update sys_role set status = #{status} where role_id = #{roleId}
 	</update>
 	
 	<delete id="deleteRoleById" parameterType="Long">
