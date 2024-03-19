@@ -101,10 +101,6 @@ public class SelfcomUserController extends BaseController {
   public AjaxResult getInfo(@PathVariable(value = "userId", required = false) String userId) {
     Long userIdc = StringUtils.isBlank(userId) ? SecurityUtils.getCurrUserId() : Long.valueOf(userId);
     AjaxResult ajax = AjaxResult.success();
-    List<SysRole> roles = roleService.selectRoleAll();
-
-    ajax.put("roles", SysUser.isAdmin(userIdc) ? roles
-        : roles.stream().filter(r -> !r.isAdmin()).collect(Collectors.toList()));
 //    ajax.put("posts", postService.selectPostAllByCom(SecurityUtils.getCurrComId()));
     if (StringUtils.isNotNull(userIdc)) {
       ajax.put(AjaxResult.DATA_TAG, userService.selectUserById(userIdc));

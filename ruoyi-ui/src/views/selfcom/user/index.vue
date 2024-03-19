@@ -53,6 +53,22 @@
           @keyup.enter.native="handleQuery"
         />
       </el-form-item>
+      <el-form-item label="角色" prop="queryRoleId">
+        <el-select
+          v-model="queryParams.queryRoleId"
+          placeholder="用户角色"
+          clearable
+          style="width: 220px"
+        >
+          <el-option
+            v-for="item in roleOptions"
+            :key="item.roleId"
+            :label="item.roleName"
+            :value="item.roleId"
+            :disabled="item.status === 1"
+          ></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-select
           v-model="queryParams.status"
@@ -342,6 +358,7 @@ import { getToken } from "@/utils/auth";
 import { treeselect } from "@/api/selfcom/dept";
 import Treeselect from "@riophae/vue-treeselect";
 import "@riophae/vue-treeselect/dist/vue-treeselect.css";
+import {listRole} from "@/api/selfcom/role";
 
 export default {
   name: "User",
@@ -408,7 +425,8 @@ export default {
         userName: undefined,
         phonenumber: undefined,
         status: undefined,
-        deptId: undefined
+        deptId: undefined,
+        queryRoleId: undefined,
       },
       // 表单校验
       rules: {
@@ -441,6 +459,7 @@ export default {
     }
   },
   created() {
+    this.getRoleList();
     this.getList();
     this.getTreeselect();
     this.getDicts("sys_normal_disable").then(response => {
@@ -461,6 +480,20 @@ export default {
           this.userList = response.rows;
           this.total = response.total;
           this.loading = false;
+        }
+      );
+    },
+
+    /** 查询角色列表 */
+    getRoleList() {
+      this.loading = true;
+      listRole(this.addDateRange({
+          // status: "0",
+          pageNum: 1,
+          pageSize: 100000},
+        this.dateRange)).then(
+        response => {
+          this.roleOptions = response.rows;
         }
       );
     },
@@ -512,6 +545,7 @@ export default {
         email: undefined,
         sex: undefined,
         status: "0",
+        queryRoleId: undefined,
         remark: undefined,
         postIds: [],
         roleIds: []
@@ -541,7 +575,7 @@ export default {
       this.getTreeselect();
       getUser().then(response => {
         this.postOptions = response.posts;
-        this.roleOptions = response.roles;
+        // this.roleOptions = response.roles;
         this.open = true;
         this.title = "添加用户";
         this.form.password = this.initPassword;
@@ -555,7 +589,7 @@ export default {
       getUser(userId).then(response => {
         this.form = response.data;
         // this.postOptions = response.posts;
-        this.roleOptions = response.roles;
+        // this.roleOptions = response.roles;
         // this.form.postIds = response.postIds;
         this.form.roleIds = response.roleIds;
         this.open = true;

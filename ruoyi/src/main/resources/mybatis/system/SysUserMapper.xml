@@ -106,6 +106,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<if test="superAdminFlag != null and superAdminFlag != ''">
 			AND u.super_admin_flag = #{superAdminFlag}
 		</if>
+		<if test="queryRoleId != null and queryRoleId != ''">
+			AND #{queryRoleId} IN (select r.role_id
+			from sys_role r
+			left join sys_user_role ur on ur.role_id = r.role_id
+			where ur.user_id = u.user_id)
+		</if>
 		<!-- 数据范围过滤 -->
 		${params.dataScope}
 	</select>

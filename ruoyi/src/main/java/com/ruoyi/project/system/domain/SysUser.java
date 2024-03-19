@@ -117,6 +117,11 @@ public class SysUser extends BaseEntity
      */
     private Integer superAdminFlag;
 
+    // 查询参数
+    /**
+     * 查询角色ID
+     */
+    private Long queryRoleId;
 
     public SysUser()
     {
@@ -359,6 +364,14 @@ public class SysUser extends BaseEntity
     public void setPostIds(Long[] postIds)
     {
         this.postIds = postIds;
+    }
+
+    public Long getQueryRoleId() {
+        return queryRoleId;
+    }
+
+    public void setQueryRoleId(Long queryRoleId) {
+        this.queryRoleId = queryRoleId;
     }
 
     @Override
