@@ -73,6 +73,10 @@ Add Tenant
 Login Tenant, http://localhost:1024/
 ![img.png](./screenshot/tenant.png)
 
+## Used In Production
+
+- [ThXChat](https://www.thxchat.com) — Talk to strangers online with text, voice, video & real-time translation (23 languages)
+
 #### Acknowledgements
 1. [sa-token](https://sa-token.cc) Lightweight Java authentication framework for permissions.
 2. [RuoYi-Vue-Multi-Tenant](https://github.com/leslie1015/RuoYi-Vue-Multi-Tenant) Multi-tenant framework based on RuoYi-Vue.
