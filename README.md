@@ -76,6 +76,7 @@ Login Tenant, http://localhost:1024/
 ## Used In Production
 
 - [ThXChat](https://www.thxchat.com) — Talk to strangers online with text, voice, video & real-time translation (23 languages)
+- [Kazzaa](https://www.kazzaa.com) — Fancy Text, decorations & Kaomoji
 
 #### Acknowledgements
 1. [sa-token](https://sa-token.cc) Lightweight Java authentication framework for permissions.
